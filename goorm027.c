@@ -6,7 +6,9 @@ int main()
    char *str = (char *)malloc(100);
    scanf("%s", str);
    scanf("%d %d", &a, &b);
-   for (i = a - 1; i < b; i++)
-      printf("%c", str[i]);
+   // for (i = a - 1; i < b; i++)
+   //    printf("%c", str[i]);
+   *(str + b) = '\0';
+   printf("%s", str + a - 1);
    return 0;
 }
