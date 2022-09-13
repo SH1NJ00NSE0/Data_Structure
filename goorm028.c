@@ -13,12 +13,13 @@ void mystrcpy(char str2[], char str1[])
 void mystrcpy2(int *str3, int *str1)
 {
    int i = 0;
-   while (*(str1 + i) != '\0')
+   while (*str1)
    {
-      *(str3 + i) = *(str1 + i);
-      i++;
+      *str3 = *str1;
+      str1++;
+      str3++;
    }
-   *(str3 + i) = '\0';
+   *str3 = '\0';
 }
 
 int main()
