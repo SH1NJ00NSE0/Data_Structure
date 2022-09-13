@@ -4,14 +4,14 @@ int ispalandrom(char *str)
 {
    int len = 0, i;
    int flag = 1;
-   len = strlen(str); //입력문자열의 길이 저장
+   len = strlen(str);
 
-   for (i = 0;; i++)
+   for (i = 0; i < len / 2; i++)
    {
-      if ()
-      { // 예를 들어 level 에서 v를 기준으로 양옆 문자를 비교하여 다르면
+      if (str[i] != str[len - i - 1])
+      {
          flag = 0;
-         ()
+         break;
       }
    }
 
@@ -21,17 +21,10 @@ int ispalandrom(char *str)
 int main()
 {
    char mystr1[256];
-   char mystr2[256];
-
    gets(mystr1);
    if (ispalandrom(mystr1))
-   { //펠린드롬 판정 함수 호출
       printf("Yes\n");
-   }
    else
-   {
       printf("No\n");
-   }
-
    return 0;
 }
