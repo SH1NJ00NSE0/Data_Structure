@@ -1,18 +1,12 @@
 #include <stdio.h>
-
+char star[20];
 void f(int n)
 {
-   int i;
-   if (n == 1)
-   {
-      printf("*\n");
+   if (!n)
       return;
-   }
-   else
-      f(n - 1);
-   for (i = 0; i < n; i++)
-      printf("*");
-   printf("\n");
+   f(n - 1);
+   star[n] = '*';
+   printf("%s\n", star + 1);
 }
 int main()
 {
