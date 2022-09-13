@@ -8,17 +8,17 @@ void mystrcpy(char str2[], char str1[])
       i++;
    }
    str2[i] = '\0';
-   //마지막 문자에 '\0' 입력
 }
 
 void mystrcpy2(int *str3, int *str1)
 {
    int i = 0;
-   while (str1 + (sizeof(char) * i) != '\0')
+   while (*(str1 + i) != '\0')
    {
-      str3 +
+      *(str3 + i) = *(str1 + i);
+      i++;
    }
-   //마지막 문자에 '\0' 입력
+   *(str3 + i) = '\0';
 }
 
 int main()
