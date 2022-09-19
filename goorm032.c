@@ -4,7 +4,7 @@ int main()
 {
    int a[25] = {0};
    char str[1000001];
-   int m, i;
+   int m, i, state=0;
 
    gets(str);
 
@@ -16,9 +16,18 @@ int main()
    }
 
    for (i = 0; i <= 25; i++)
-      if (a[i] && m > a[i])
+      if (m > a[i])
          m = a[i];
-         // printf("%c : %d\n", i + 'A', a[i]);
-
+   for (i = 0; i <= 25; i++)
+   {
+      if (m == a[i])
+         state++;
+      if (state >= 2)
+      {
+         printf("?");
+         return 0;
+      }
+   }
+   printf("%d", a[i]);
    return 0;
 }
