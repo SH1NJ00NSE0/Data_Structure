@@ -16,8 +16,8 @@ int main()
    strcpy(item1->name, "교향곡 전집");
    item1->price = 100000;
    item1->limit = false;
-   Goods *ptr = (Goods *)malloc(sizeof(Goods));
-   ptr->price = 100000;
+   Goods *ptr;
+   ptr = item1;
    ptr->limit = true;
    if (ptr->limit == true)
       printf("한정판\n");
@@ -25,6 +25,5 @@ int main()
       printf("일반판\n");
 
    free(item1);
-   free(ptr);
    return 0;
 }
