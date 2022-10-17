@@ -49,8 +49,7 @@ element deQueue(Queue *q)
 		error("큐가 공백상태입니다.");
 		return -1;
 	}
-	int item = q->data[++(q->front)];
-	return item;
+	return q->data[++(q->front)];
 }
 
 void queuePrint(Queue *q)
