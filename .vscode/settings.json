@@ -1,5 +1,11 @@
 {
    "files.associations": {
       "stdio.h": "c"
-   }
+   },
+   "editor.renderWhitespace": "none",
+   "editor.fontFamily": "IBM Plex Mono,D2coding, 'Courier New', monospace",
+   "editor.tabSize": 3,
+   "editor.cursorSmoothCaretAnimation": true,
+   "editor.padding.top": 9,
+   "prettier.tabWidth": 3
 }
