@@ -1,31 +1,34 @@
 #include <stdio.h>
-
-int myStrlen(char str[])
-{ // 문자 길이 구하는 코드
-
+void mystrcpy(char str2[], char str1[])
+{
+   int i = 0;
+   while (str1[i] != '\0')
+   {
+      str2[i] = str1[i];
+      i++;
+   }
+   str2[i] = '\0';
 }
-int myStrlen2(char str[])
-{ //숫자길이 구하는 코드
 
-}
-int myStrlen3(char str[])
-{ // 공백제외 문자길이 구하는 코드
-
-}
-int myStrlen4(char str[], char c)
-{ // 특정문자의 길이를 반환 코드
-
+void mystrcpy2(int *str3, int *str1)
+{
+   int i = 0;
+   while (*str1)
+   {
+      *str3 = *str1;
+      str1++;
+      str3++;
+   }
+   *str3 = '\0';
 }
 
 int main()
 {
-	char s[100];
-	scanf("%s", s);
-
-	printf("%d\n", myStrlen(s));		  // 문자 전체의 길이
-	printf("%d\n", myStrlen2(s));		  // 숫자의 길이
-	printf("%d\n", myStrlen3(s));		  // 공백제외 문자길이
-	printf("%d\n", myStrlen4(s, 'H')); // 특정문자의 길이
-
-	return 0;
+   char str1[257], str2[257], str3[257];
+   fgets(str1, 257, stdin);
+   mystrcpy(str2, str1);
+   puts(str2);
+   mystrcpy2(str3, str1);
+   puts(str3);
+   return 0;
 }

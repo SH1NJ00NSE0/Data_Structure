@@ -1,34 +1,20 @@
 #include <stdio.h>
-void mystrcpy(char str2[], char str1[])
-{
-   int i = 0;
-   while (str1[i] != '\0')
-   {
-      str2[i] = str1[i];
-      i++;
-   }
-   str2[i] = '\0';
-}
-
-void mystrcpy2(int *str3, int *str1)
-{
-   int i = 0;
-   while (*str1)
-   {
-      *str3 = *str1;
-      str1++;
-      str3++;
-   }
-   *str3 = '\0';
-}
 
 int main()
 {
-   char str1[257], str2[257], str3[257];
-   fgets(str1, 257, stdin);
-   mystrcpy(str2, str1);
-   puts(str2);
-   mystrcpy2(str3, str1);
-   puts(str3);
+   int n, i, j;
+   int str[100][100];
+   scanf("%d", &n);
+
+   for (i = 0; i < n; i++)
+   {
+      if (i % 2)
+         for (j = n - 1; j >= 0; j--)
+            printf("%d ", i * n + j + 1);
+      else
+         for (j = 0; j < n; j++)
+            printf("%d ", i * n + j + 1);
+      printf("\n");
+   }
    return 0;
 }

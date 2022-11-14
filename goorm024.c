@@ -1,21 +1,17 @@
 #include <stdio.h>
-
+char star[20];
+void f(int n)
+{
+   if (!n)
+      return;
+   f(n - 1);
+   star[n] = '*';
+   printf("%s\n", star + 1);
+}
 int main()
 {
-   char str[100];
-   int num, i, len;
-   scanf("%s", &str);
-   for (i = 0; str[i] != '\0'; i++)
-   {
-      if (str[i] == ',')
-      {
-         printf("%d\n", num);
-         num = 0;
-         continue;
-      }
-      num = num * 10 + (str[i] - '0');
-   }
-   printf("%d\n", num);
-
+   int n;
+   scanf("%d", &n);
+   f(n);
    return 0;
 }
