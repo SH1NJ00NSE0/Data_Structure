@@ -1,24 +1,50 @@
+// 함수를 활용해 node 동적으로 생성하기
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-
-typedef struct
+typedef int element;
+typedef struct Node
 {
-   char name[20];
-   int *p;
-} data;
+	element data;
+	struct Node *next;
+} Node;
+
+Node *createNode(element data);
+void printAll(Node *ptr);
 
 int main()
 {
-   int n = 50;
-   data d1;
-   data *d2 = (data *)malloc(sizeof(data));
-   d1.p = &n;
-   d2->p = &n;
-   printf("%d\n", *d1.p + *d2->p);
-   strcpy(d2->name, "bobby");
-   printf("%s\n", (*d2).name);
-   printf("%d\n", *(*d2).p);
-   free(d2);
-   return 0;
+	Node *head, *node1, *node2;
+	head = createNode(12);
+	node1 = createNode(99);
+	node2 = createNode(37);
+	head->next = node1;
+	node1->next = node2;
+	node2->next = NULL;
+	printAll(head);
+}
+
+Node *createNode(element data)
+{
+	Node *newNode = (Node *)malloc(sizeof(Node));
+	newNode->data = data;
+	newNode->next = NULL;
+	return newNode;
+}
+
+void printAll(Node *ptr)
+{
+	while (ptr)
+	{
+		if (ptr->next)
+		{
+			printf("%d", ptr->data);
+			printf("->");
+			ptr = ptr->next;
+		}
+		else
+		{
+			printf("%d", ptr->data);
+			return; // 프린트 종료
+		}
+	}
 }
