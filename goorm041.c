@@ -1,57 +1,62 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <time.h>
+#define MAX_TERMS 100
 
-void genRandom(int a[][5], int r);
-void outputArray(int a[][5], int r);
-float averageScore(int *row, int size);
-int main()
+typedef struct
 {
-   int score[4][5], i;
-   srand(time(NULL));
-   genRandom(score, 4);
-   outputArray(score, 4);
+   int row;
+   int col;
+   int value;
+} element;
 
-   for (i = 0; i < 4; i++)
+typedef struct
+{
+   element data[MAX_TERMS];
+   int rows;
+   int cols;
+   int terms;
+} Smatrix;
+
+Smatrix matrixTrans2(Smatrix a)
+{
+   int i, j, bindex=0; //행렬 b에서 현재 저장위치
+   Smatrix b;
+   b.terms = a.terms;
+   b.rows = a.cols;
+   b.cols = a.rows;
+   for (i = 0; i < b.rows; i++)
    {
-      printf("선수 %d : %.2f\n", i + 1, averageScore(score[i], 5));
+      for (j = 0; j < a.terms; j++)
+      {
+         if (i == a.data[j].col)
+         {
+            b.data[bindex].row = a.data[j].col;
+            b.data[bindex].col = a.data[j].row;
+            b.data[bindex].value = a.data[j].value;
+            bindex++;
+         }
+      }
    }
 
+   //희소행렬 (행,열,값)을 전치행렬 (열,행,값) 으로 변경하는 함수 작성
+   return b;
+}
+void matrixPrint(Smatrix a)
+{
+   for (int i = 0; i < a.terms; i++)
+      printf("(%d, %d, %d) \n", a.data[i].row, a.data[i].col, a.data[i].value);
+   printf("---------------------\n");
+}
+int main(void)
+{
+   Smatrix m;
+   Smatrix r;
+   //행렬 정보 항개수,행개수,열개수 입력
+   scanf("%d %d %d", &m.terms, &m.rows, &m.cols);
+   for (int i = 0; i < m.terms; i++)
+      scanf("%d %d %d", &m.data[i].row, &m.data[i].col, &m.data[i].value);
+   matrixPrint(m);
+   r = matrixTrans2(m);
+   matrixPrint(r);
    return 0;
-}
-void genRandom(int a[][5], int r)
-{
-   int i, j;
-   for (i = 0; i < r; i++)
-      for (j = 0; j < 5; j++)
-         a[i][j] = rand() % 10 + 1; // 이 부분에 rand 함수를 이용해 1~10 정수 생성
-}
-void outputArray(int a[][5], int r)
-{
-   int i, j;
-   for (i = 0; i < r; i++)
-   {
-      for (j = 0; j < 5; j++)
-         printf("%5d ", a[i][j]);
-      printf("\n");
-   }
-   // a배열의 r행 5열의 데이터 출력
-}
-float averageScore(int *row, int size)
-{
-   int i, tot = 0, max = *row, min = *row;
-   double avg;
-   for (i = 1; i < size; i++)
-   {
-      if (*(row + i) > max)
-         max = *(row + i);
-      if (*(row + i) < min)
-         min = *(row + i);
-   }
-   for (i = 0; i < size; i++)
-      tot += *(row + i);
-   tot -= max + min;
-   avg = tot / 3.0;
-   return avg;
-   // 선수 한명의 점수를 입력 받아 절사 평균을 구하여 출력
 }

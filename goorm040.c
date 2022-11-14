@@ -1,83 +1,44 @@
 #include <stdio.h>
-void inputArray(int a[][3], int r);
-void outputArray(int a[][3], int r);
-void addMatrix(int a[][3], int b[][3], int r);
-void subMatrix(int a[][3], int b[][3], int r);
-void scalarMul(int a[][3], int r, int n);
+#define ROWS 3
+#define COLS 3
+
+void inputMatrix(int a[][COLS]);
+void transMatrix(int a[][COLS], int b[][COLS]);
+void printMatrix(int a[][COLS]);
+
 int main()
 {
-   int A[2][3], B[2][3];
-   int row = 2, col = 3;
-   int num;
-   printf("2*3 행렬의 각 원소의 값을 입력하시오.\n");
-   inputArray(A, row);
-   inputArray(B, row);
-
-   printf("행렬 A, B\n");
-   outputArray(A, row);
-   outputArray(B, row);
-
-   printf("행렬합 \n");
-   addMatrix(A, B, row);
-
-   printf("행렬차 \n");
-   subMatrix(A, B, row);
-
-   printf("곱할 정수 입력\n");
-   scanf("%d", &num);
-   scalarMul(A, row, num);
-
+   int array1[ROWS][COLS];
+   int array2[ROWS][COLS];
+   inputMatrix(array1);
+   transMatrix(array1, array2);
+   printMatrix(array1);
+   printf("\n   전치행렬 출력\n");
+   printf("  --------------\n");
+   printMatrix(array2);
    return 0;
 }
-void inputArray(int a[][3], int r)
+void inputMatrix(int a[][COLS])
 {
    int i, j;
-   for (i = 0; i < r; i++)
-      for (j = 0; j < 3; j++)
+   for (i = 0; i < ROWS; i++)
+      for (j = 0; j < COLS; j++)
          scanf("%d", &a[i][j]);
-   // r행 3열을 입력받는 코드를 작성
 }
-void outputArray(int a[][3], int r)
+void transMatrix(int a[][COLS], int b[][COLS])
 {
    int i, j;
-   for (i = 0; i < r; i++)
-   {
-      for (j = 0; j < 3; j++)
-         printf("%5d ", a[i][j]);
-      printf("\n");
-   }
-   // r행 3열을 출력하는 코드를 작성
+   for (i = 0; i < ROWS; i++)
+      for (j = 0; j < COLS; j++)
+         b[i][j] = a[j][i];
 }
-void addMatrix(int a[][3], int b[][3], int r)
+void printMatrix(int a[][COLS])
 {
    int i, j;
-   for (i = 0; i < r; i++)
+   for (i = 0; i < ROWS; i++)
    {
-      for (j = 0; j < 3; j++)
-         printf("%5d ", a[i][j] + b[i][j]);
+      for (j = 0; j < COLS; j++)
+         printf("%4d ", a[i][j]);
       printf("\n");
    }
-   // a,b행렬을 덧셈 계산 후 출력하는 코드 작성
-}
-void subMatrix(int a[][3], int b[][3], int r)
-{
-   int i, j;
-   for (i = 0; i < r; i++)
-   {
-      for (j = 0; j < 3; j++)
-         printf("%5d ", a[i][j] - b[i][j]);
-      printf("\n");
-   }
-   // a,b행렬을 뺄셈 계산 후 출력하는 코드 작성
-}
-void scalarMul(int a[][3], int r, int n)
-{
-   int i, j;
-   for (i = 0; i < r; i++)
-   {
-      for (j = 0; j < 3; j++)
-         printf("%5d ", a[i][j] * n);
-      printf("\n");
-   }
-   // a행렬 원소에 n을 곱하여 출력하는 코드 작성
 }

@@ -9,13 +9,13 @@ typedef struct Stack
 
 void initStack(Stack *s)
 {
-	//초기화코드
+	// 초기화코드
 	s->top = -1;
 }
 
 int isFull(Stack *s)
 {
-	return s->top == MAX - 1; //코드작성
+	return s->top == MAX - 1; // 코드작성
 }
 
 int empty(Stack *s)

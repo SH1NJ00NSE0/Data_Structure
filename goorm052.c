@@ -14,7 +14,7 @@ typedef struct
 void error(char *message)
 {
 	printf("%s\n", message);
-	exit(0); //메인함수 종료
+	exit(0); // 메인함수 종료
 }
 
 void initQueue(Queue *q)
@@ -49,7 +49,8 @@ element deQueue(Queue *q)
 		error("큐가 공백상태입니다.");
 		return -1;
 	}
-	return q->data[++(q->front)];
+	int item = q->data[++(q->front)];
+	return item;
 }
 
 void queuePrint(Queue *q)

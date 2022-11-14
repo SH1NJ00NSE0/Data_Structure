@@ -1,36 +1,42 @@
 #include <stdio.h>
+#include <math.h>
+#define N 5
+
+typedef struct
+{
+	int x, y;
+} POINT;
+
+void inputPoint(POINT *p);
+void outputPoint(POINT *p);
+double distance(POINT *p, POINT *q);
 
 int main()
 {
-   int n, m, i, j, sx = 1, sy = 1, x, y, cnt = 2;
-   int str[102][102] = {0};
-   scanf("%d %d", &n, &m);
-   for (i = 1; i <= n; i++)
-      for (j = 1; j <= m; j++)
-         str[i][j] = 1;
-   while (1)
-   {
-      if (str[sy + 1][sx] == 1)
-         sy++;
-      else if (str[sy][sx + 1] == 1)
-         sx++;
-      else
-         break;
-      y = sy;
-      x = sx;
-      while (str[y][x])
-      {
-         str[y][x] = cnt;
-         y--;
-         x++;
-         cnt++;
-      }
-   }
-   for (i = 1; i <= n; i++)
-   {
-      for (j = 1; j <= m; j++)
-         printf("%d ", str[i][j]);
-      printf("\n");
-   }
-   return 0;
+	int i, mi = 0;
+	POINT p[5];
+	POINT origin = {0, 0};
+	for (i = 0; i < 5; i++)
+		inputPoint(p + i);
+	// for (i = 0; i < 5; i++)
+	//    outputPoint(p + i);
+	for (i = 1; i < 5; i++)
+		if (distance(&p[mi], &origin) >= distance(&p[i], &origin))
+			if (p[mi].x + p[mi].y > p[i].x + p[i].y)
+				mi = i;
+
+	printf("원점에서 가장 가까운 좌표 : (%4d, %4d)", p[mi].x, p[mi].y);
+	return 0;
+}
+void inputPoint(POINT *p)
+{
+	scanf("%d %d", &p->x, &p->y);
+}
+void outputPoint(POINT *p)
+{
+	printf("(%4d, %4d)\n", p->x, p->y);
+}
+double distance(POINT *p, POINT *q)
+{
+	return sqrt(pow(p->x - q->x, 2) + pow(p->y - q->y, 2));
 }
