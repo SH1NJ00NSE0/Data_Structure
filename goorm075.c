@@ -62,14 +62,15 @@ void main()
 	TreeNode *n2 = makeRootNode('*', n4, n5);
 	TreeNode *n1 = makeRootNode('-', n2, n3);
 
-	printf("\n preorder  : ");
+	printf("preorder  : ");
 	preorder(n1);
 
-	printf("\n inorder   : ");
+	printf("\ninorder   : ");
 	inorder(n1);
 
-	printf("\n postorder : ");
+	printf("\npostorder : ");
 	postorder(n1);
+
 	free(n1);
 	free(n2);
 	free(n3);
