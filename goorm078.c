@@ -120,7 +120,6 @@ int main()
 	root = insertNode(root, 12);
 	root = insertNode(root, 22);
 	root = insertNode(root, 30);
-
 	printf("이진탐색트리 중위순회 결과 출력\n");
 	inorder(root);
 	printf("\n삭제할 숫자를 입력하세요\n");
