@@ -149,12 +149,12 @@ int main()
 		case 2:
 			printf("삽입할 문자를 입력하세요 : ");
 			scanf(" %c", &key);
-			// 삽입함수 호출;
+			insertNode(root, key);
 			break;
 		case 3:
 			printf("삭제할 문자를 입력하세요 : ");
 			scanf(" %c", &key);
-			// 삭제함수 호출
+			deleteNode(root, key);
 			break;
 		case 4:
 			printf("찾을 문자를 입력하세요 : ");
