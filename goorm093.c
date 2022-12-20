@@ -45,7 +45,7 @@ element dequeue(QueueType *q)
 	if (isEmpty(q))
 	{
 		printf("큐가 공백상태입니다.");
-		return;
+		// return;
 	}
 	q->front = (q->front + 1) % MAX_QUEUE_SIZE;
 	return q->queue[q->front];
