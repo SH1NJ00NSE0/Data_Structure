@@ -116,6 +116,21 @@ void bfsMat(GraphType *g, int v)
 
 int main()
 {
+	GraphType *g;
+	g = (GraphType *)malloc(sizeof(GraphType));
+	graphInit(g);
+	for (int i = 0; i < 6; i++)
+		insertVertex(g, i);
+	insertEdge(g, 0, 2);
+	insertEdge(g, 2, 1);
+	insertEdge(g, 2, 3);
+	insertEdge(g, 0, 4);
+	insertEdge(g, 4, 5);
+	insertEdge(g, 1, 5);
 
+	printf("너비 우선 탐색\n");
+	bfsMat(g, 0);
+	printf("\n");
+	free(g);
 	return 0;
 }
